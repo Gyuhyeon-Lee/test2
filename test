@@ -1,0 +1,861 @@
+//
+//  LectureUploadViewController.swift
+//  FreeDom
+//
+//  Created by 이규현 on 2020/09/14.
+//  Copyright © 2020 이규현. All rights reserved.
+//
+
+import UIKit
+import SnapKit
+
+class LectureUploadViewController: UIViewController {
+    
+    
+    //강의 등록지역 피커뷰
+    //도시 피커뷰
+    let picker1Options = ["서울", "경기", "인천"]
+    
+    //지역 피커뷰(도시 피커뷰에서 첫번째 데이터 선택시 나오는 데이터)
+    let picker2TVOptions = ["홍대", "신촌", "건대"]
+    
+    //지역 피커뷰(도시 피커뷰에서 두번째 데이터 선택시 나오는 데이터)
+    let picker2RadioOptions = ["분당", "용인", "수원"]
+    
+    
+    
+    
+    //대분류
+    let maincategorypickerItem = ["댄스", "보컬", "음악"]
+    
+    //중분류
+    let middlecategorypickerItem = ["댄스1", "보컬1", "음악1"]
+    
+    
+    
+    
+    //
+    let view4 = UIView()
+    let view5 = UIView()
+    let view6 = UIView()
+    let view7 = UIView()
+    let view8 = UIView()
+    
+    //
+    let lecturetitleandinfotitleLabel = UILabel()
+    let lecturecontentstitleLabel = UILabel()
+    let lecturepricesettingLabel = UILabel()
+    let lecturecalendertitleLabel = UILabel()
+    
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+    
+    let necessaryLabel = UILabel()
+    let lecturethumbnailuploadtitleLabel = UILabel()
+    let lecturethumbnailImage = UIImageView()
+    let uploadthumbnailImageButton = UIButton()
+    
+    let blueBox2 = UIView()
+    let recommendationLabel = UILabel()
+    let imageformatLabel = UILabel()
+    let imagepiexlLabel = UILabel()
+    let imageuploadLabel = UILabel()
+    
+    let blueBox3 = UIView()
+    let agreeCheck = UIButton()
+    let useimagemarketingagreeLable = UILabel()
+    let ifagreeLabel = UILabel()
+    //
+    
+    //
+    let lectureregistrationareaLabel = UILabel()
+    let citytxtField = UITextField()
+    var thePicker = UIPickerView()
+    var toolbar = UIToolbar()
+    //
+    
+    let countytxtField = UITextField()
+    var thePicker2 = UIPickerView()
+    var toolbar2 = UIToolbar()
+    //
+    
+    //
+    let lecturecategoryLabel = UILabel()
+    let lecturemaincategorytxtField = UITextField()
+    var thePicker3 = UIPickerView()
+    var toolbar3 = UIToolbar()
+    //
+    
+    //
+    let lecturesubclasstxtField = UITextField()
+    var thePicker4 = UIPickerView()
+    var toolbar4 = UIToolbar()
+    //
+    
+    //
+    let view1 = UIView()
+    let view2 = UIView()
+    let view3 = UIView()
+    //
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor.white
+        
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.title = "강의 올리기"
+        
+        //
+        scrollView.backgroundColor = UIColor.black
+        self.view.addSubview(scrollView)
+        
+        scrollView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        
+        
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { (make) in
+            make.width.equalToSuperview()
+            make.centerX.top.bottom.equalToSuperview()
+        }
+        
+        
+        
+        //
+        self.contentView.addSubview(view4)
+        self.view4.addSubview(view5)
+        self.view4.addSubview(view6)
+        self.view4.addSubview(view7)
+        self.view4.addSubview(view8)
+        
+        self.view5.addSubview(lecturetitleandinfotitleLabel)
+        self.view6.addSubview(lecturecontentstitleLabel)
+        self.view7.addSubview(lecturepricesettingLabel)
+        self.view8.addSubview(lecturecalendertitleLabel)
+        
+        self.contentView.addSubview(necessaryLabel)
+        self.contentView.addSubview(lecturethumbnailuploadtitleLabel)
+        self.contentView.addSubview(lecturethumbnailImage)
+        self.contentView.addSubview(uploadthumbnailImageButton)
+        
+        self.contentView.addSubview(blueBox2)
+        self.contentView.addSubview(recommendationLabel)
+        self.contentView.addSubview(imageformatLabel)
+        self.contentView.addSubview(imagepiexlLabel)
+        self.contentView.addSubview(imageuploadLabel)
+        
+        self.contentView.addSubview(blueBox3)
+        self.contentView.addSubview(agreeCheck)
+        self.contentView.addSubview(useimagemarketingagreeLable)
+        self.contentView.addSubview(ifagreeLabel)
+        
+        //
+        self.contentView.addSubview(lectureregistrationareaLabel)
+        self.contentView.addSubview(citytxtField)
+        self.contentView.addSubview(countytxtField)
+        
+        self.contentView.addSubview(thePicker)
+        self.contentView.addSubview(toolbar)
+        
+        self.contentView.addSubview(thePicker2)
+        self.contentView.addSubview(toolbar2)
+        //
+        
+        //
+        self.contentView.addSubview(lecturecategoryLabel)
+        self.contentView.addSubview(lecturemaincategorytxtField)
+        self.contentView.addSubview(lecturesubclasstxtField)
+        
+        self.contentView.addSubview(thePicker3)
+        self.contentView.addSubview(toolbar3)
+        
+        self.contentView.addSubview(thePicker4)
+        self.contentView.addSubview(toolbar4)
+        //
+        
+        //
+        self.contentView.addSubview(view1)
+        self.contentView.addSubview(view2)
+        self.contentView.addSubview(view3)
+        //
+        
+        
+        
+        
+        //
+        view4.backgroundColor = UIColor.black
+        view4.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.height.equalTo(64)
+        }
+        
+        view5.backgroundColor = UIColor.cyan
+        view5.snp.makeConstraints { (make) in
+            make.width.equalTo(view.snp.width).dividedBy(4)
+            make.height.equalTo(view.snp.width).dividedBy(4)
+            make.left.equalTo(view4)
+            make.top.equalTo(view4)
+        }
+        
+        view6.backgroundColor = UIColor.brown
+        view6.snp.makeConstraints { (make) in
+            make.width.equalTo(view.snp.width).dividedBy(4)
+            make.height.equalTo(view.snp.width).dividedBy(4)
+            make.leading.equalTo(view5.snp.trailing)
+            make.top.equalTo(view5)
+        }
+        
+        view7.backgroundColor = UIColor.gray
+        view7.snp.makeConstraints { (make) in
+            make.width.equalTo(view.snp.width).dividedBy(4)
+            make.height.equalTo(view.snp.width).dividedBy(4)
+            make.leading.equalTo(view6.snp.trailing)
+            make.top.equalTo(view6)
+        }
+        
+        view8.backgroundColor = UIColor.blue
+        view8.snp.makeConstraints { (make) in
+            make.width.equalTo(view.snp.width).dividedBy(4)
+            make.height.equalTo(view.snp.width).dividedBy(4)
+            make.leading.equalTo(view7.snp.trailing)
+        }
+        
+        
+        
+        lecturetitleandinfotitleLabel.text = "01. 제목/정보"
+        lecturetitleandinfotitleLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        lecturetitleandinfotitleLabel.textColor = UIColor(red: 34/255, green: 103/255, blue: 137/255, alpha: 1.0)
+
+        lecturetitleandinfotitleLabel.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(25)
+            make.centerX.equalToSuperview()
+        }
+        
+        
+        lecturecontentstitleLabel.text = "02. 강의내용"
+        lecturecontentstitleLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        lecturecontentstitleLabel.textColor = UIColor(red: 152/255, green: 150/255, blue: 150/255, alpha: 1.0)
+        
+        lecturecontentstitleLabel.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(25)
+            make.centerX.equalToSuperview()
+        }
+        
+        
+        lecturepricesettingLabel.text = "03. 가격설정"
+        lecturepricesettingLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        lecturepricesettingLabel.textColor = UIColor(red: 152/255, green: 150/255, blue: 150/255, alpha: 1.0)
+        
+        lecturepricesettingLabel.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(25)
+            make.centerX.equalToSuperview()
+        }
+        
+        
+        lecturecalendertitleLabel.text = "04. 강의일정"
+        lecturecalendertitleLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        lecturecalendertitleLabel.textColor = UIColor(red: 152/255, green: 150/255, blue: 150/255, alpha: 1.0)
+        
+        lecturecalendertitleLabel.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(25)
+            make.centerX.equalToSuperview()
+        }
+        //
+        
+        //
+        necessaryLabel.text = "*는 필수입력 사항입니다."
+        necessaryLabel.font = UIFont.systemFont(ofSize: 12)
+        necessaryLabel.textColor = UIColor.red
+        
+        necessaryLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(view6.snp.bottom).offset(25)
+            make.trailing.equalTo(-10)
+        }
+        
+        lecturethumbnailuploadtitleLabel.text = "강의 이미지 올리기*"
+        lecturethumbnailuploadtitleLabel.font = UIFont.systemFont(ofSize: 15)
+        lecturethumbnailuploadtitleLabel.textColor = UIColor(red: 165/255, green: 191/255, blue: 206/255, alpha: 1.0)
+        
+        lecturethumbnailuploadtitleLabel.snp.makeConstraints { (make) in
+            make.leading.equalTo(10)
+            make.top.equalTo(view5.snp.bottom).offset(50)
+        }
+        
+        
+        lecturethumbnailImage.image = UIImage(named: "img_main_popularclass_thumbnail")
+        lecturethumbnailImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        lecturethumbnailImage.snp.makeConstraints { (make) in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.top.equalTo(lecturethumbnailuploadtitleLabel.snp.bottom)
+            make.height.equalTo(200)
+        }
+        
+        uploadthumbnailImageButton.setTitle("이미지 올리기", for: .normal)
+        uploadthumbnailImageButton.setTitleColor(UIColor.white, for: .normal)
+        uploadthumbnailImageButton.layer.cornerRadius = 2
+        uploadthumbnailImageButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        uploadthumbnailImageButton.backgroundColor = UIColor(red: 166/255, green: 199/255, blue: 206/255, alpha: 1.0)
+        //uploadthumbnailImageButton.addTarget(self, action: #selector(self.uploadthumbnailImageButtonTapped), for: .touchUpInside)
+        
+        uploadthumbnailImageButton.snp.makeConstraints { (make) in
+            make.top.equalTo(lecturethumbnailImage.snp.bottom).offset(30)
+            make.leading.equalTo(8)
+            make.trailing.equalTo(-8)
+            make.height.equalTo(39)
+        }
+        
+        blueBox2.backgroundColor = UIColor(red: 240/255, green: 244/255, blue: 248/255, alpha: 1.0)
+        blueBox2.layer.borderColor = UIColor(red: 112/255, green: 112/255, blue: 112/255, alpha: 1.0).cgColor
+        blueBox2.layer.borderWidth = 1.0
+        
+        blueBox2.snp.makeConstraints { make in
+            make.leading.equalTo(8)
+            make.trailing.equalTo(-8)
+            make.height.equalTo(100)
+            make.top.equalTo(uploadthumbnailImageButton.snp.bottom).offset(30)
+        }
+        
+        recommendationLabel.isUserInteractionEnabled = true
+        recommendationLabel.text = "권장사항"
+        recommendationLabel.font = UIFont.systemFont(ofSize: 12)
+        recommendationLabel.textColor = UIColor(red: 235/255, green: 103/255, blue: 130/255, alpha: 1.0)
+        
+        recommendationLabel.snp.makeConstraints { make in
+            make.leading.equalTo(20)
+            make.top.equalTo(uploadthumbnailImageButton.snp.bottom).offset(45)
+        }
+        
+        imageformatLabel.isUserInteractionEnabled = true
+        imageformatLabel.text = "- 10MB 이하의 jpg,jpeg,png 파일만 가능합니다."
+        imageformatLabel.font = UIFont.systemFont(ofSize: 12)
+        imageformatLabel.textColor = UIColor.black
+        
+        imageformatLabel.snp.makeConstraints { make in
+            make.leading.equalTo(20)
+            make.top.equalTo(recommendationLabel.snp.bottom).offset(2)
+        }
+        
+        imagepiexlLabel.isUserInteractionEnabled = true
+        imagepiexlLabel.text = "- 840x540 픽셀의 이미지만 가능합니다."
+        imagepiexlLabel.font = UIFont.systemFont(ofSize: 12)
+        imagepiexlLabel.textColor = UIColor.black
+        
+        imagepiexlLabel.snp.makeConstraints { make in
+            make.leading.equalTo(20)
+            make.top.equalTo(imageformatLabel.snp.bottom).offset(2)
+        }
+        
+        imageuploadLabel.isUserInteractionEnabled = true
+        imageuploadLabel.text = "이미지는 최소 1장 등록하셔야 합니다."
+        imageuploadLabel.font = UIFont.systemFont(ofSize: 12)
+        imageuploadLabel.textColor = UIColor.black
+        
+        imageuploadLabel.snp.makeConstraints { make in
+            make.leading.equalTo(20)
+            make.top.equalTo(imagepiexlLabel.snp.bottom).offset(2)
+        }
+
+        blueBox3.backgroundColor = UIColor(red: 240/255, green: 244/255, blue: 248/255, alpha: 1.0)
+        blueBox3.layer.borderColor = UIColor(red: 112/255, green: 112/255, blue: 112/255, alpha: 1.0).cgColor
+        blueBox3.layer.borderWidth = 1.0
+        
+        blueBox3.snp.makeConstraints { make in
+            make.leading.equalTo(8)
+            make.trailing.equalTo(-8)
+            make.height.equalTo(110)
+            make.top.equalTo(blueBox2.snp.bottom).offset(10)
+        }
+        
+        
+        agreeCheck.setImage(UIImage(named: "btn_autologin_uncheck"), for: .normal)
+        agreeCheck.setImage(UIImage(named: "btn_autologin_checked"), for: .selected)
+        agreeCheck.isSelected = UserDefaults.standard.bool(forKey: "idsave")
+        //agreeCheck.addTarget(self, action: #selector(self.idsaveCheckTapped), for: .touchUpInside)
+        
+        agreeCheck.snp.makeConstraints{ (make) in
+            make.width.height.equalTo(14)
+            make.leading.equalTo(20)
+            make.top.equalTo(blueBox2.snp.bottom).offset(30)
+        }
+        
+        useimagemarketingagreeLable.isUserInteractionEnabled = true
+        useimagemarketingagreeLable.text = "등록한 이미지를 마케팅에 활용하는 것에 동의 합니다(선택)"
+        useimagemarketingagreeLable.font = UIFont.systemFont(ofSize: 12)
+        useimagemarketingagreeLable.textColor = UIColor.black
+        
+        useimagemarketingagreeLable.snp.makeConstraints { make in
+            make.leading.equalTo(agreeCheck.snp.trailing).offset(10)
+            make.top.equalTo(blueBox2.snp.bottom).offset(30)
+        }
+        
+        
+        ifagreeLabel.isUserInteractionEnabled = true
+        ifagreeLabel.text = "동의 시, 멘토님의 수업이 더 많이 판매될 수 있도록 카카오 1분, 네이버 포스트, 페이스북 등의 SNS 채널에 광고가 집행될 수 있습니다."
+        ifagreeLabel.font = UIFont.systemFont(ofSize: 12)
+        ifagreeLabel.numberOfLines = 0
+        ifagreeLabel.textColor = UIColor(red: 235/255, green: 103/255, blue: 130/255, alpha: 1.0)
+        
+        ifagreeLabel.snp.makeConstraints { make in
+            make.leading.equalTo(20)
+            make.trailing.equalTo(-62)
+            make.top.equalTo(useimagemarketingagreeLable.snp.bottom).offset(15)
+        }
+        
+        lectureregistrationareaLabel.isUserInteractionEnabled = true
+        lectureregistrationareaLabel.text = "강의 등록 지역(대표)*"
+        lectureregistrationareaLabel.font = UIFont.systemFont(ofSize: 15)
+        lectureregistrationareaLabel.textColor = UIColor(red: 165/255, green: 191/255, blue: 206/255, alpha: 1.0)
+        
+        lectureregistrationareaLabel.snp.makeConstraints { make in
+            make.leading.equalTo(19)
+            make.top.equalTo(blueBox3.snp.bottom).offset(50)
+        }
+
+        citytxtField.backgroundColor = UIColor.white
+        citytxtField.layer.borderColor = UIColor(red: 147/255, green: 178/255, blue: 195/255, alpha: 1.0).cgColor
+        citytxtField.attributedPlaceholder = NSAttributedString(string: "도시를 선택해 주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 137/255, green: 137/255, blue: 137/255, alpha: 1.0)])
+        citytxtField.textColor = UIColor.black
+        citytxtField.layer.cornerRadius = 2.0
+        citytxtField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        citytxtField.font = UIFont.systemFont(ofSize: 13)
+        citytxtField.leftViewMode = .always
+        citytxtField.layer.borderWidth = 1.0
+        citytxtField.inputView = thePicker
+
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tap(gestureReconizer:)))
+        citytxtField.addGestureRecognizer(tap)
+        citytxtField.isUserInteractionEnabled = true
+        
+        citytxtField.snp.makeConstraints { (make) in
+            make.leading.equalTo(7)
+            make.trailing.equalTo(-7)
+            make.height.equalTo(39)
+            make.top.equalTo(lectureregistrationareaLabel.snp.bottom).offset(5)
+        }
+        
+        thePicker.frame = CGRect(x: 0,y: view.frame.size.height-216, width: view.frame.size.width, height: 216)
+        thePicker.delegate = self
+        thePicker.isHidden = true
+        thePicker.dataSource = self
+        thePicker.backgroundColor = UIColor.white
+        thePicker.selectRow(1, inComponent: 0, animated: true)
+        self.view.addSubview(thePicker)
+        //
+        
+        //
+        countytxtField.backgroundColor = UIColor.white
+        countytxtField.layer.borderColor = UIColor(red: 147/255, green: 178/255, blue: 195/255, alpha: 1.0).cgColor
+        countytxtField.attributedPlaceholder = NSAttributedString(string: "지역을 선택해 주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 137/255, green: 137/255, blue: 137/255, alpha: 1.0)])
+        countytxtField.textColor = UIColor.black
+        countytxtField.layer.cornerRadius = 2.0
+        countytxtField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        countytxtField.font = UIFont.systemFont(ofSize: 13)
+        countytxtField.leftViewMode = .always
+        countytxtField.layer.borderWidth = 1.0
+        countytxtField.inputView = thePicker2
+        
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(tap2(gestureReconizer:)))
+        countytxtField.addGestureRecognizer(tap2)
+        countytxtField.isUserInteractionEnabled = true
+        
+        countytxtField.snp.makeConstraints { (make) in
+            make.leading.equalTo(7)
+            make.trailing.equalTo(-7)
+            make.height.equalTo(39)
+            make.top.equalTo(citytxtField.snp.bottom).offset(5)
+        }
+        
+        thePicker2.frame = CGRect(x: 0,y: view.frame.size.height-216, width: view.frame.size.width, height: 216)
+        thePicker2.delegate = self
+        thePicker2.isHidden = true
+        thePicker2.dataSource = self
+        thePicker2.backgroundColor = UIColor.white
+        thePicker2.selectRow(1, inComponent: 0, animated: true)
+        self.view.addSubview(thePicker2)
+        //
+        
+        //
+        lecturecategoryLabel.isUserInteractionEnabled = true
+        lecturecategoryLabel.text = "강의 카테고리*"
+        lecturecategoryLabel.font = UIFont.systemFont(ofSize: 15)
+        lecturecategoryLabel.textColor = UIColor(red: 165/255, green: 191/255, blue: 206/255, alpha: 1.0)
+        
+        lecturecategoryLabel.snp.makeConstraints { make in
+            make.leading.equalTo(19)
+            make.top.equalTo(countytxtField.snp.bottom).offset(50)
+        }
+        
+        //
+        lecturemaincategorytxtField.backgroundColor = UIColor.white
+        lecturemaincategorytxtField.layer.borderColor = UIColor(red: 147/255, green: 178/255, blue: 195/255, alpha: 1.0).cgColor
+        lecturemaincategorytxtField.attributedPlaceholder = NSAttributedString(string: "대분류를 선택해 주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 137/255, green: 137/255, blue: 137/255, alpha: 1.0)])
+        lecturemaincategorytxtField.textColor = UIColor.black
+        lecturemaincategorytxtField.layer.cornerRadius = 2.0
+        lecturemaincategorytxtField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        lecturemaincategorytxtField.font = UIFont.systemFont(ofSize: 13)
+        lecturemaincategorytxtField.leftViewMode = .always
+        lecturemaincategorytxtField.layer.borderWidth = 1.0
+        lecturemaincategorytxtField.inputView = thePicker3
+        
+        let tap3 = UITapGestureRecognizer(target: self, action: #selector(tap3(gestureReconizer:)))
+        lecturemaincategorytxtField.addGestureRecognizer(tap3)
+        lecturemaincategorytxtField.isUserInteractionEnabled = true
+        
+        
+        lecturemaincategorytxtField.snp.makeConstraints { (make) in
+            make.leading.equalTo(7)
+            make.trailing.equalTo(-7)
+            make.height.equalTo(39)
+            make.top.equalTo(lecturecategoryLabel.snp.bottom).offset(5)
+        }
+        
+        thePicker3.frame = CGRect(x: 0,y: view.frame.size.height-216, width: view.frame.size.width, height: 216)
+        thePicker3.delegate = self
+        thePicker3.isHidden = true
+        thePicker3.dataSource = self
+        thePicker3.backgroundColor = UIColor.white
+        thePicker3.selectRow(1, inComponent: 0, animated: true)
+        self.view.addSubview(thePicker3)
+        //
+        
+        //
+        lecturesubclasstxtField.backgroundColor = UIColor.white
+        lecturesubclasstxtField.layer.borderColor = UIColor(red: 147/255, green: 178/255, blue: 195/255, alpha: 1.0).cgColor
+        lecturesubclasstxtField.attributedPlaceholder = NSAttributedString(string: "중분류를 선택해 주세요.", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 137/255, green: 137/255, blue: 137/255, alpha: 1.0)])
+        lecturesubclasstxtField.textColor = UIColor.black
+        lecturesubclasstxtField.layer.cornerRadius = 2.0
+        lecturesubclasstxtField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        lecturesubclasstxtField.font = UIFont.systemFont(ofSize: 13)
+        lecturesubclasstxtField.leftViewMode = .always
+        lecturesubclasstxtField.layer.borderWidth = 1.0
+        lecturesubclasstxtField.inputView = thePicker4
+        
+        let tap4 = UITapGestureRecognizer(target: self, action: #selector(tap4(gestureReconizer:)))
+        lecturesubclasstxtField.addGestureRecognizer(tap4)
+        lecturesubclasstxtField.isUserInteractionEnabled = true
+        
+        lecturesubclasstxtField.snp.makeConstraints { (make) in
+            make.leading.equalTo(7)
+            make.trailing.equalTo(-7)
+            make.height.equalTo(39)
+            make.top.equalTo(lecturemaincategorytxtField.snp.bottom).offset(5)
+        }
+
+
+        thePicker4.frame = CGRect(x: 0,y: view.frame.size.height-216, width: view.frame.size.width, height: 216)
+        thePicker4.delegate = self
+        thePicker4.isHidden = true
+        thePicker4.dataSource = self
+        thePicker4.backgroundColor = UIColor.white
+        thePicker4.selectRow(1, inComponent: 0, animated: true)
+        self.view.addSubview(thePicker4)
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //
+        view1.backgroundColor = .red
+        view1.snp.makeConstraints { (make) in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(300)
+            make.top.equalTo(citytxtField.snp.bottom).offset(200)
+        }
+
+        view2.backgroundColor = .black
+        view2.snp.makeConstraints { (make) in
+            make.top.equalTo(view1.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(300)
+        }
+        
+        view3.backgroundColor = .blue
+        view3.snp.makeConstraints { (make) in
+            make.top.equalTo(view2.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(300)
+            make.bottom.equalToSuperview()
+        }
+    }
+    
+    
+    
+    
+    
+    
+    //
+    @objc func tap(gestureReconizer: UITapGestureRecognizer) {
+        print("tap")
+        
+        thePicker.isHidden = false
+        toolbar.isHidden = false
+
+        //temporarystorageButton.isHidden = true
+        //nextstepaftersavingButton.isHidden = true
+        
+        let DEVICE_SCREEN_WIDTH = UIScreen.main.bounds.size.width
+        toolbar.frame = CGRect(x: 0, y: view.frame.size.height-216, width: DEVICE_SCREEN_WIDTH, height: 44)
+        toolbar.barStyle = UIBarStyle.black
+        toolbar.barTintColor = UIColor.black
+        toolbar.isTranslucent = true
+        self.view.addSubview(toolbar)
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(LectureUploadViewController.doneClick))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(LectureUploadViewController.cancelClick))
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+    }
+    
+    
+    
+    @objc func tap2(gestureReconizer: UITapGestureRecognizer) {
+        print("tap2")
+        
+        thePicker2.isHidden = false
+        toolbar2.isHidden = false
+        
+        //temporarystorageButton.isHidden = true
+        //nextstepaftersavingButton.isHidden = true
+        
+        let DEVICE_SCREEN_WIDTH = UIScreen.main.bounds.size.width
+        toolbar2.frame = CGRect(x: 0, y: view.frame.size.height-216, width: DEVICE_SCREEN_WIDTH, height: 44)
+        toolbar2.barStyle = UIBarStyle.black
+        toolbar2.barTintColor = UIColor.black
+        toolbar2.isTranslucent = true
+        self.view.addSubview(toolbar2)
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(LectureUploadViewController.doneClick))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(LectureUploadViewController.cancelClick))
+        toolbar2.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolbar2.isUserInteractionEnabled = true
+    }
+    
+    
+    
+    @objc func tap3(gestureReconizer: UITapGestureRecognizer) {
+        print("tap3")
+
+        //temporarystorageButton.isHidden = true
+        //nextstepaftersavingButton.isHidden = true
+        
+        let DEVICE_SCREEN_WIDTH = UIScreen.main.bounds.size.width
+        toolbar3.frame = CGRect(x: 0, y: view.frame.size.height-216, width: DEVICE_SCREEN_WIDTH, height: 44)
+        toolbar3.barStyle = UIBarStyle.black
+        toolbar3.barTintColor = UIColor.black
+        toolbar3.isTranslucent = true
+        self.view.addSubview(toolbar3)
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(LectureUploadViewController.doneClick))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(LectureUploadViewController.cancelClick))
+        toolbar3.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolbar3.isUserInteractionEnabled = true
+    }
+    
+    
+    
+    
+    
+    @objc func tap4(gestureReconizer: UITapGestureRecognizer) {
+        print("tap4")
+        
+        //temporarystorageButton.isHidden = true
+        //nextstepaftersavingButton.isHidden = true
+        
+        let DEVICE_SCREEN_WIDTH = UIScreen.main.bounds.size.width
+        toolbar4.frame = CGRect(x: 0, y: view.frame.size.height-216, width: DEVICE_SCREEN_WIDTH, height: 44)
+        toolbar4.barStyle = UIBarStyle.black
+        toolbar4.barTintColor = UIColor.black
+        toolbar4.isTranslucent = true
+        self.view.addSubview(toolbar4)
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(LectureUploadViewController.doneClick))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(LectureUploadViewController.cancelClick))
+        toolbar4.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolbar4.isUserInteractionEnabled = true
+    }
+    //
+    
+    
+    
+    
+    
+    
+    
+    //---------------------------------------------------------------------------------------------------------------------------------------
+    @objc func doneClick() {
+        thePicker.isHidden = true
+        toolbar.isHidden = true
+        
+        thePicker2.isHidden = true
+        toolbar2.isHidden = true
+        
+        thePicker3.isHidden = true
+        toolbar3.isHidden = true
+        
+        thePicker4.isHidden = true
+        toolbar4.isHidden = true
+        
+        //temporarystorageButton.isHidden = false
+        //nextstepaftersavingButton.isHidden = false
+        
+    }
+    @objc func cancelClick() {
+        thePicker.isHidden = true
+        toolbar.isHidden = true
+        
+        thePicker2.isHidden = true
+        toolbar2.isHidden = true
+        
+        thePicker3.isHidden = true
+        toolbar3.isHidden = true
+        
+        thePicker4.isHidden = true
+        toolbar4.isHidden = true
+        
+        //temporarystorageButton.isHidden = false
+        //nextstepaftersavingButton.isHidden = false
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------
+    
+    
+    
+}
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------
+extension LectureUploadViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == self.thePicker {
+            return picker1Options.count
+            
+        } else if thePicker.selectedRow(inComponent: 0) == 0 {
+            return picker2TVOptions.count
+            
+        } else if thePicker.selectedRow(inComponent: 0) == 1 {
+            return picker2RadioOptions.count
+        }
+        
+        
+        /*
+        if pickerView == self.thePicker3 {
+            return maincategorypickerItem.count
+            
+        } else if thePicker3.selectedRow(inComponent: 0) == 0 {
+            return maincategorypickerItem.count
+            
+        } else if thePicker3.selectedRow(inComponent: 0) == 1 {
+            return maincategorypickerItem.count
+        }
+        */
+        return 0
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == self.thePicker {
+            return picker1Options[row]
+            
+        } else if thePicker.selectedRow(inComponent: 0) == 0 {
+            return picker2TVOptions[row]
+            
+        } else if thePicker.selectedRow(inComponent: 0) == 1 {
+            return picker2RadioOptions[row]
+            
+        }
+        
+        
+        /*
+        if pickerView == self.thePicker3 {
+            return maincategorypickerItem[row]
+            
+        } else if thePicker3.selectedRow(inComponent: 0) == 0 {
+            return maincategorypickerItem[row]
+            
+        } else if thePicker3.selectedRow(inComponent: 0) == 1 {
+            return maincategorypickerItem[row]
+            
+        }
+        */
+        return nil
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == thePicker {
+            thePicker2.reloadAllComponents()
+            citytxtField.text = picker1Options[row]
+            self.view.endEditing(true)
+            
+        } else if thePicker.selectedRow(inComponent: 0) == 0 {
+            thePicker2.reloadAllComponents()
+            countytxtField.text = picker2TVOptions[row]
+            self.view.endEditing(true)
+            
+        } else if thePicker.selectedRow(inComponent: 0) == 1 {
+            thePicker2.reloadAllComponents()
+            countytxtField.text = picker2RadioOptions[row]
+            self.view.endEditing(true)
+        }
+        
+        
+        /*
+        if pickerView == thePicker3 {
+            thePicker4.reloadAllComponents()
+            lecturemaincategorytxtField.text = maincategorypickerItem[row]
+            self.view.endEditing(true)
+            
+        } else if thePicker3.selectedRow(inComponent: 0) == 0 {
+            thePicker4.reloadAllComponents()
+            lecturesubclasstxtField.text = middlecategorypickerItem[row]
+            self.view.endEditing(true)
+            
+        } else if thePicker3.selectedRow(inComponent: 0) == 1 {
+            thePicker4.reloadAllComponents()
+            lecturesubclasstxtField.text = middlecategorypickerItem[row]
+            self.view.endEditing(true)
+        }
+        */
+    }
+}
+//---------------------------------------------------------------------------------------------------------------------------------------
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------
+extension LectureUploadViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
+//---------------------------------------------------------------------------------------------------------------------------------------
